@@ -39,7 +39,12 @@ const Ribbons: React.FC<RibbonsProps> = ({
     const renderer = new Renderer({ dpr: window.devicePixelRatio || 2, alpha: true });
     const gl = renderer.gl;
     if (Array.isArray(backgroundColor) && backgroundColor.length === 4) {
-      gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
+      const [r, g, b, a] = backgroundColor;
+      if (r !== undefined && g !== undefined && b !== undefined && a !== undefined) {
+        gl.clearColor(r, g, b, a);
+      } else {
+        gl.clearColor(0, 0, 0, 0);
+      }
     } else {
       gl.clearColor(0, 0, 0, 0);
     }
@@ -183,8 +188,14 @@ const Ribbons: React.FC<RibbonsProps> = ({
       if (!container) return;
       const rect = container.getBoundingClientRect();
       if ('changedTouches' in e && e.changedTouches.length) {
-        x = e.changedTouches[0].clientX - rect.left;
-        y = e.changedTouches[0].clientY - rect.top;
+        const touch = e.changedTouches[0];
+        if (touch) {
+          x = touch.clientX - rect.left;
+          y = touch.clientY - rect.top;
+        } else {
+          x = 0;
+          y = 0;
+        }
       } else if (e instanceof MouseEvent) {
         x = e.clientX - rect.left;
         y = e.clientY - rect.top;
@@ -210,17 +221,24 @@ const Ribbons: React.FC<RibbonsProps> = ({
       lastTime = currentTime;
 
       lines.forEach(line => {
-        tmp.copy(mouse).add(line.mouseOffset).sub(line.points[0]).multiply(line.spring);
+        const firstPoint = line.points[0];
+        if (!firstPoint) return;
+
+        tmp.copy(mouse).add(line.mouseOffset).sub(firstPoint).multiply(line.spring);
         line.mouseVelocity.add(tmp).multiply(line.friction);
-        line.points[0].add(line.mouseVelocity);
+        firstPoint.add(line.mouseVelocity);
 
         for (let i = 1; i < line.points.length; i++) {
+          const currentPoint = line.points[i];
+          const prevPoint = line.points[i - 1];
+          if (!currentPoint || !prevPoint) continue;
+
           if (isFinite(maxAge) && maxAge > 0) {
             const segmentDelay = maxAge / (line.points.length - 1);
             const alpha = Math.min(1, (dt * speedMultiplier) / segmentDelay);
-            line.points[i].lerp(line.points[i - 1], alpha);
+            currentPoint.lerp(prevPoint, alpha);
           } else {
-            line.points[i].lerp(line.points[i - 1], 0.9);
+            currentPoint.lerp(prevPoint, 0.9);
           }
         }
         if (line.polyline.mesh.program.uniforms.uTime) {
