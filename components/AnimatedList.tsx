@@ -92,8 +92,9 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
       } else if (e.key === 'Enter') {
         if (selectedIndex >= 0 && selectedIndex < items.length) {
           e.preventDefault();
-          if (onItemSelect) {
-            onItemSelect(items[selectedIndex], selectedIndex);
+          const item = items[selectedIndex];
+          if (onItemSelect && item) {
+            onItemSelect(item, selectedIndex);
           }
         }
       }
