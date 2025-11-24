@@ -74,11 +74,13 @@ Before you begin, ensure you have the following installed:
 
    ```env
    # Required: API base URL for fetching Naruto data
-   NEXT_API_URL=https://your-api-url.com
+   NEXT_API_URL=https://api-dattebayo.vercel.app
 
    # Optional: Site URL for SEO metadata
    NEXT_PUBLIC_SITE_URL=https://your-site-url.com
    ```
+
+   > **Note**: This project uses the [Dattebayo API](https://api-dattebayo.vercel.app/), a free and open-source API for Naruto data. We are grateful to the maintainers for providing this service.
 
 4. **Start the development server**
 
@@ -98,6 +100,9 @@ Before you begin, ensure you have the following installed:
 | `pnpm build` | Create optimized production build |
 | `pnpm start` | Start production server |
 | `pnpm lint` | Run ESLint for code quality checks |
+| `pnpm test` | Run unit tests |
+| `pnpm test:watch` | Run tests in watch mode |
+| `pnpm test:coverage` | Run tests with coverage report |
 
 ## Project Structure
 
@@ -221,11 +226,17 @@ Built with the shadcn/ui pattern using `class-variance-authority` for variants a
 
 The project prefers named exports over default exports (except for Next.js special files like `page.tsx` and `layout.tsx`).
 
+## API
+
+This application uses the **[Dattebayo API](https://api-dattebayo.vercel.app/)** to fetch Naruto and Boruto universe data. This is a free, open-source API that provides information about characters, clans, villages, jutsu, and more.
+
+**API Documentation**: [https://api-dattebayo.vercel.app/docs](https://api-dattebayo.vercel.app/docs)
+
 ## Environment Variables
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `NEXT_API_URL` | Yes | Base URL for the Naruto API |
+| `NEXT_API_URL` | Yes | Base URL for the Naruto API (use `https://api-dattebayo.vercel.app`) |
 | `NEXT_PUBLIC_SITE_URL` | No | Site URL for SEO metadata (defaults to `https://naruto-universe.com`) |
 
 ## Browser Support
