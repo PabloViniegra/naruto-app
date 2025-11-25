@@ -44,3 +44,11 @@ next-env.d.ts
 CLAUDE.md
 .claude/*
 .mcp.json
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
