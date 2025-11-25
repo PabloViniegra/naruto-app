@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Users, Shield, MapPin } from "lucide-react";
+import { Users, Shield, MapPin, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 
@@ -17,6 +17,7 @@ const navLinks = [
     { href: "/characters", label: "Characters", icon: Users },
     { href: "/clans", label: "Clans", icon: Shield },
     { href: "/villages", label: "Villages", icon: MapPin },
+    { href: "/about", label: "About", icon: Info },
 ] as const satisfies readonly NavLink[];
 
 export function Navbar() {
