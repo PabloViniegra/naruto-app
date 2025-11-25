@@ -359,7 +359,7 @@ describe("AboutContent", () => {
             const { container } = render(<AboutContent />);
 
             const heading = container.querySelector(
-                ".text-4xl.sm\\:text-5xl.md\\:text-6xl"
+                ".text-3xl.sm\\:text-4xl.md\\:text-5xl"
             );
             expect(heading).toBeInTheDocument();
         });
@@ -444,7 +444,7 @@ describe("AboutContent", () => {
         it("should wrap all content in a space-y container", () => {
             const { container } = render(<AboutContent />);
 
-            const mainContainer = container.querySelector(".space-y-16");
+            const mainContainer = container.querySelector(".space-y-12.sm\\:space-y-16");
             expect(mainContainer).toBeInTheDocument();
         });
 

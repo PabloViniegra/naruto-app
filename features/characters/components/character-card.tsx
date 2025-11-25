@@ -38,24 +38,24 @@ export function CharacterCard({ character, className, style }: CharacterCardProp
           className="absolute inset-0"
         />
       </div>
-      <CardHeader className="pb-2">
-        <CardTitle className="truncate text-lg">{character.name}</CardTitle>
-        <CardDescription className="truncate">{clan}</CardDescription>
+      <CardHeader className="pb-2 px-3 pt-3 sm:px-6 sm:pt-6">
+        <CardTitle className="truncate text-base sm:text-lg leading-tight">{character.name}</CardTitle>
+        <CardDescription className="truncate text-xs sm:text-sm">{clan}</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-2 text-sm">
-        <div className="flex items-center justify-between">
-          <span className="text-muted-foreground">Village</span>
-          <span className="truncate max-w-[60%] text-right">{affiliation}</span>
+      <CardContent className="space-y-2 text-xs sm:text-sm px-3 pb-3 sm:px-6 sm:pb-6">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-muted-foreground shrink-0">Village</span>
+          <span className="truncate text-right">{affiliation}</span>
         </div>
         {jutsuCount > 0 && (
-          <div className="flex items-center justify-between">
-            <span className="text-muted-foreground">Jutsu</span>
-            <span>{jutsuCount} techniques</span>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground shrink-0">Jutsu</span>
+            <span className="shrink-0">{jutsuCount} techniques</span>
           </div>
         )}
         {character.personal?.sex && (
-          <div className="flex items-center justify-between">
-            <span className="text-muted-foreground">Sex</span>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground shrink-0">Sex</span>
             <span>{character.personal.sex}</span>
           </div>
         )}
@@ -64,13 +64,13 @@ export function CharacterCard({ character, className, style }: CharacterCardProp
             {character.natureType.slice(0, 3).map((nature) => (
               <span
                 key={nature}
-                className="inline-flex items-center rounded-md bg-secondary px-2 py-0.5 text-xs text-secondary-foreground transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
+                className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs text-secondary-foreground transition-colors duration-200 hover:bg-primary hover:text-primary-foreground min-h-[28px]"
               >
                 {nature}
               </span>
             ))}
             {character.natureType.length > 3 && (
-              <span className="inline-flex items-center rounded-md bg-secondary px-2 py-0.5 text-xs text-secondary-foreground">
+              <span className="inline-flex items-center rounded-md bg-secondary px-2 py-1 text-xs text-secondary-foreground min-h-[28px]">
                 +{character.natureType.length - 3}
               </span>
             )}

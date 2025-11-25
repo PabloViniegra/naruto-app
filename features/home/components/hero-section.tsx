@@ -11,7 +11,7 @@ const Ribbons = dynamic(() => import("@/components/Ribbons"), {
 
 export function HeroSection() {
     return (
-        <section className="relative flex min-h-screen flex-col items-center justify-center gap-8 px-4 text-center overflow-hidden isolate">
+        <section className="relative flex min-h-screen flex-col items-center justify-center gap-6 px-4 text-center overflow-hidden isolate sm:gap-8">
             {/* Ribbons Background Effect */}
             <div className="absolute inset-0 z-[15] opacity-50">
                 <Ribbons
@@ -47,46 +47,46 @@ export function HeroSection() {
             />
             {/* Overlay for text readability */}
             <div className="absolute inset-0 z-10 bg-linear-to-b from-background/80 via-background/70 to-background" />
-            <div className="relative z-20 flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <h1 className="font-sans text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <div className="relative z-20 flex flex-col gap-3 px-2 animate-in fade-in slide-in-from-bottom-4 duration-700 sm:gap-4">
+                <h1 className="font-sans text-3xl font-bold tracking-tight leading-tight sm:text-5xl md:text-6xl">
                     Naruto Universe
                 </h1>
-                <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl font-serif">
+                <p className="mx-auto max-w-2xl text-base text-muted-foreground leading-relaxed sm:text-lg md:text-xl font-serif px-2">
                     Explore the ninja world. Discover all characters, their
                     jutsu, clans, and much more from the Naruto universe.
                 </p>
             </div>
 
-            <div className="relative z-20 flex flex-col gap-4 sm:flex-row animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+            <div className="relative z-20 flex flex-col gap-3 w-full px-2 sm:flex-row sm:w-auto sm:gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
                 <Button
                     asChild
                     size="lg"
-                    className="font-mono rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 active:scale-95"
+                    className="font-mono rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/25 active:scale-95 w-full sm:w-auto min-h-[48px]"
                 >
                     <Link href="/characters">Explore Universe</Link>
                 </Button>
             </div>
 
-            <div className="relative z-20 mt-8 grid grid-cols-3 gap-8 text-center sm:gap-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-                <div className="group flex flex-col gap-1 transition-transform duration-300 hover:-translate-y-1">
-                    <span className="font-mono text-3xl font-bold sm:text-4xl transition-colors duration-300 group-hover:text-primary">
+            <div className="relative z-20 mt-4 grid grid-cols-3 gap-4 text-center w-full max-w-md sm:mt-8 sm:gap-8 sm:max-w-2xl md:gap-16 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 px-2">
+                <div className="group flex flex-col gap-0.5 transition-transform duration-300 hover:-translate-y-1 sm:gap-1">
+                    <span className="font-mono text-2xl font-bold sm:text-3xl md:text-4xl transition-colors duration-300 group-hover:text-primary">
                         1400+
                     </span>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-xs text-muted-foreground sm:text-sm">
                         Characters
                     </span>
                 </div>
-                <div className="group flex flex-col gap-1 transition-transform duration-300 hover:-translate-y-1">
-                    <span className="font-mono text-3xl font-bold sm:text-4xl transition-colors duration-300 group-hover:text-primary">
+                <div className="group flex flex-col gap-0.5 transition-transform duration-300 hover:-translate-y-1 sm:gap-1">
+                    <span className="font-mono text-2xl font-bold sm:text-3xl md:text-4xl transition-colors duration-300 group-hover:text-primary">
                         500+
                     </span>
-                    <span className="text-sm text-muted-foreground">Jutsu</span>
+                    <span className="text-xs text-muted-foreground sm:text-sm">Jutsu</span>
                 </div>
-                <div className="group flex flex-col gap-1 transition-transform duration-300 hover:-translate-y-1">
-                    <span className="font-mono text-3xl font-bold sm:text-4xl transition-colors duration-300 group-hover:text-primary">
+                <div className="group flex flex-col gap-0.5 transition-transform duration-300 hover:-translate-y-1 sm:gap-1">
+                    <span className="font-mono text-2xl font-bold sm:text-3xl md:text-4xl transition-colors duration-300 group-hover:text-primary">
                         50+
                     </span>
-                    <span className="text-sm text-muted-foreground">Clans</span>
+                    <span className="text-xs text-muted-foreground sm:text-sm">Clans</span>
                 </div>
             </div>
         </section>

@@ -87,20 +87,20 @@ export default async function CharactersPage({
 
     return (
         <MainContainer>
-            <div className="flex flex-col gap-8 py-8">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex flex-col gap-6 py-6 sm:gap-8 sm:py-8">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                     <div className="flex flex-col gap-2">
-                        <h1 className="font-sans text-3xl font-bold">
+                        <h1 className="font-sans text-2xl font-bold leading-tight sm:text-3xl">
                             Naruto Characters
                         </h1>
-                        <p className="text-muted-foreground">
+                        <p className="text-sm text-muted-foreground sm:text-base">
                             Browse over 1400 characters from the Naruto and
                             Boruto universe
                         </p>
                     </div>
                     <Suspense
                         fallback={
-                            <div className="h-9 w-full max-w-xs animate-pulse rounded-md bg-muted" />
+                            <div className="h-11 w-full max-w-xs animate-pulse rounded-md bg-muted sm:h-9" />
                         }
                     >
                         <CharactersSearch />

@@ -80,7 +80,7 @@ export function CharactersSearch({ className }: CharactersSearchProps) {
         >
             <Search
                 className={cn(
-                    "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors",
+                    "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors sm:h-4 sm:w-4",
                     isPending && "animate-pulse"
                 )}
             />
@@ -90,8 +90,8 @@ export function CharactersSearch({ className }: CharactersSearchProps) {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className={cn(
-                    "pl-9 pr-9 transition-all duration-200",
-                    "focus:ring-2 focus:ring-ring/50 rounded-xl",
+                    "pl-9 pr-10 transition-all duration-200 h-11 sm:h-9",
+                    "focus:ring-2 focus:ring-ring/50 rounded-xl text-base sm:text-sm",
                     isPending && "opacity-70"
                 )}
                 aria-label="Search characters"
@@ -100,10 +100,10 @@ export function CharactersSearch({ className }: CharactersSearchProps) {
                 <button
                     type="button"
                     onClick={handleClear}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground min-w-[44px] min-h-[44px] flex items-center justify-center sm:min-w-0 sm:min-h-0"
                     aria-label="Clear search"
                 >
-                    <X className="h-4 w-4" />
+                    <X className="h-5 w-5 sm:h-4 sm:w-4" />
                 </button>
             )}
         </div>

@@ -72,17 +72,17 @@ export function CharacterDetail({
     const englishVA = toArray(voiceActors.english);
 
     return (
-        <div className={cn("flex flex-col gap-8", className)}>
+        <div className={cn("flex flex-col gap-6 sm:gap-8", className)}>
             {/* Back button */}
             <div className="animate-in fade-in duration-300">
                 <Button
                     asChild
                     variant="ghost"
-                    className="group/back gap-2 transition-all duration-300 hover:gap-3"
+                    className="group/back gap-2 transition-all duration-300 hover:gap-3 min-h-[44px]"
                 >
                     <Link href="/characters">
                         <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover/back:-translate-x-1" />
-                        Back to Characters
+                        <span className="text-sm sm:text-base">Back to Characters</span>
                     </Link>
                 </Button>
             </div>
@@ -91,26 +91,26 @@ export function CharacterDetail({
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <Card className="overflow-hidden">
                     {/* Background gradient */}
-                    <div className="relative h-32 bg-linear-to-r from-primary/20 via-primary/10 to-transparent sm:h-40" />
+                    <div className="relative h-24 bg-linear-to-r from-primary/20 via-primary/10 to-transparent sm:h-32 md:h-40" />
 
                     {/* Profile content */}
-                    <div className="relative px-6 pb-6">
+                    <div className="relative px-4 pb-4 sm:px-6 sm:pb-6">
                         {/* Image - overlapping the gradient */}
-                        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-8">
-                            <div className="-mt-16 sm:-mt-20">
-                                <div className="group/image relative h-32 w-32 overflow-hidden rounded-2xl border-4 border-background bg-muted shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 sm:h-40 sm:w-40">
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:gap-6 md:gap-8">
+                            <div className="-mt-12 sm:-mt-16 md:-mt-20">
+                                <div className="group/image relative h-24 w-24 overflow-hidden rounded-2xl border-4 border-background bg-muted shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-105 sm:h-32 sm:w-32 md:h-40 md:w-40">
                                     {imageUrl ? (
                                         <Image
                                             src={imageUrl}
                                             alt={`${character.name} - Naruto character portrait`}
                                             fill
-                                            sizes="160px"
+                                            sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
                                             className="object-cover object-top transition-transform duration-700 group-hover/image:scale-110"
                                             priority
                                         />
                                     ) : (
                                         <div className="flex h-full w-full items-center justify-center">
-                                            <Users className="h-16 w-16 text-muted-foreground transition-transform duration-300 group-hover/image:scale-110" />
+                                            <Users className="h-12 w-12 sm:h-16 sm:w-16 text-muted-foreground transition-transform duration-300 group-hover/image:scale-110" />
                                         </div>
                                     )}
                                     <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover/image:opacity-100" />
@@ -118,13 +118,13 @@ export function CharacterDetail({
                             </div>
 
                             {/* Name and basic info */}
-                            <div className="flex flex-1 flex-col gap-3 pb-2">
+                            <div className="flex flex-1 flex-col gap-2 pb-2 sm:gap-3">
                                 <div className="flex flex-col gap-1">
-                                    <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                                    <h1 className="text-2xl font-bold tracking-tight leading-tight sm:text-3xl md:text-4xl">
                                         {character.name}
                                     </h1>
                                     {clan && (
-                                        <p className="text-lg text-muted-foreground">
+                                        <p className="text-base text-muted-foreground sm:text-lg">
                                             {clan} Clan
                                         </p>
                                     )}
@@ -132,11 +132,11 @@ export function CharacterDetail({
 
                                 {/* Affiliations */}
                                 {affiliation.length > 0 && (
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                         {affiliation.map((village) => (
                                             <span
                                                 key={village}
-                                                className="inline-flex items-center rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:shadow-md cursor-default"
+                                                className="inline-flex items-center rounded-full bg-secondary px-2.5 py-1 text-xs sm:px-3 sm:text-sm text-secondary-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 hover:shadow-md cursor-default min-h-[32px]"
                                             >
                                                 {village}
                                             </span>
@@ -146,10 +146,10 @@ export function CharacterDetail({
                             </div>
 
                             {/* Quick stats */}
-                            <div className="flex gap-6 border-t pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
+                            <div className="flex gap-4 border-t pt-4 sm:gap-6 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
                                 {jutsuCount > 0 && (
-                                    <div className="group/stat flex flex-col items-center gap-1 cursor-default transition-transform duration-300 hover:-translate-y-1">
-                                        <span className="text-2xl font-bold transition-all duration-300 group-hover/stat:text-primary group-hover/stat:scale-110">
+                                    <div className="group/stat flex flex-col items-center gap-0.5 cursor-default transition-transform duration-300 hover:-translate-y-1 sm:gap-1">
+                                        <span className="text-xl font-bold transition-all duration-300 group-hover/stat:text-primary group-hover/stat:scale-110 sm:text-2xl">
                                             {jutsuCount}
                                         </span>
                                         <span className="text-xs text-muted-foreground transition-colors duration-300 group-hover/stat:text-foreground">
@@ -158,8 +158,8 @@ export function CharacterDetail({
                                     </div>
                                 )}
                                 {natureTypes.length > 0 && (
-                                    <div className="group/stat flex flex-col items-center gap-1 cursor-default transition-transform duration-300 hover:-translate-y-1">
-                                        <span className="text-2xl font-bold transition-all duration-300 group-hover/stat:text-primary group-hover/stat:scale-110">
+                                    <div className="group/stat flex flex-col items-center gap-0.5 cursor-default transition-transform duration-300 hover:-translate-y-1 sm:gap-1">
+                                        <span className="text-xl font-bold transition-all duration-300 group-hover/stat:text-primary group-hover/stat:scale-110 sm:text-2xl">
                                             {natureTypes.length}
                                         </span>
                                         <span className="text-xs text-muted-foreground transition-colors duration-300 group-hover/stat:text-foreground">
@@ -168,8 +168,8 @@ export function CharacterDetail({
                                     </div>
                                 )}
                                 {tools.length > 0 && (
-                                    <div className="group/stat flex flex-col items-center gap-1 cursor-default transition-transform duration-300 hover:-translate-y-1">
-                                        <span className="text-2xl font-bold transition-all duration-300 group-hover/stat:text-primary group-hover/stat:scale-110">
+                                    <div className="group/stat flex flex-col items-center gap-0.5 cursor-default transition-transform duration-300 hover:-translate-y-1 sm:gap-1">
+                                        <span className="text-xl font-bold transition-all duration-300 group-hover/stat:text-primary group-hover/stat:scale-110 sm:text-2xl">
                                             {tools.length}
                                         </span>
                                         <span className="text-xs text-muted-foreground transition-colors duration-300 group-hover/stat:text-foreground">
@@ -184,7 +184,7 @@ export function CharacterDetail({
             </div>
 
             {/* Content grid */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
                 {/* Personal info card */}
                 <Card
                     className="group/card animate-in fade-in slide-in-from-bottom-4 duration-500 transition-all hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
@@ -193,14 +193,14 @@ export function CharacterDetail({
                         animationFillMode: "both",
                     }}
                 >
-                    <CardHeader className="pb-4">
-                        <CardTitle className="flex items-center gap-2">
-                            <Users className="h-5 w-5 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:rotate-6" />
+                    <CardHeader className="pb-3 px-4 pt-4 sm:pb-4 sm:px-6 sm:pt-6">
+                        <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                            <Users className="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:rotate-6" />
                             Personal Information
                         </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                    <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3">
                             {personalInfo.birthdate && (
                                 <InfoItem
                                     label="Birthdate"
@@ -282,18 +282,18 @@ export function CharacterDetail({
                             animationFillMode: "both",
                         }}
                     >
-                        <CardHeader className="pb-4">
-                            <CardTitle className="flex items-center gap-2">
-                                <Sparkles className="h-5 w-5 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
+                        <CardHeader className="pb-3 px-4 pt-4 sm:pb-4 sm:px-6 sm:pt-6">
+                            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                                <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:rotate-12" />
                                 Nature Types
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <div className="flex flex-wrap gap-2">
+                        <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+                            <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                 {natureTypes.map((nature, index) => (
                                     <span
                                         key={nature}
-                                        className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground animate-in fade-in slide-in-from-bottom-2"
+                                        className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1.5 text-xs sm:px-4 sm:text-sm font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground animate-in fade-in slide-in-from-bottom-2 min-h-[32px]"
                                         style={{
                                             animationDelay: `${
                                                 200 + index * 50
@@ -397,22 +397,22 @@ export function CharacterDetail({
                         animationFillMode: "both",
                     }}
                 >
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                            <Scroll className="h-5 w-5 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:rotate-6" />
+                    <CardHeader className="px-4 pt-4 pb-3 sm:px-6 sm:pt-6 sm:pb-4">
+                        <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                            <Scroll className="h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover/card:scale-110 group-hover/card:rotate-6" />
                             Jutsu & Techniques
                         </CardTitle>
-                        <CardDescription>
+                        <CardDescription className="text-xs sm:text-sm">
                             {jutsuCount} technique{jutsuCount !== 1 ? "s" : ""}{" "}
                             known
                         </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
+                        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {jutsuList.map((jutsu, index) => (
                                 <div
                                     key={jutsu}
-                                    className="group/jutsu flex items-center rounded-md border bg-card px-4 py-2.5 text-sm transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-md hover:shadow-primary/10 cursor-default animate-in fade-in slide-in-from-bottom-2"
+                                    className="group/jutsu flex items-center rounded-md border bg-card px-3 py-2.5 text-xs sm:px-4 sm:text-sm transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-md hover:shadow-primary/10 cursor-default animate-in fade-in slide-in-from-bottom-2 min-h-[40px]"
                                     style={{
                                         animationDelay: `${
                                             350 + Math.min(index, 20) * 20
@@ -420,7 +420,7 @@ export function CharacterDetail({
                                         animationFillMode: "both",
                                     }}
                                 >
-                                    <span className="transition-transform duration-300 group-hover/jutsu:translate-x-1">
+                                    <span className="transition-transform duration-300 group-hover/jutsu:translate-x-1 break-words">
                                         {jutsu}
                                     </span>
                                 </div>
@@ -556,11 +556,11 @@ export function CharacterDetail({
 
 function InfoItem({ label, value }: { label: string; value: string }) {
     return (
-        <div className="group/info flex flex-col gap-0.5 rounded-lg p-2 -m-2 transition-all duration-300 hover:bg-accent/50 cursor-default">
-            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover/info:text-primary">
+        <div className="group/info flex flex-col gap-0.5 rounded-lg p-2 -m-2 transition-all duration-300 hover:bg-accent/50 cursor-default min-h-[52px]">
+            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors duration-300 group-hover/info:text-primary leading-tight">
                 {label}
             </span>
-            <span className="text-sm transition-transform duration-300 group-hover/info:translate-x-1">
+            <span className="text-sm transition-transform duration-300 group-hover/info:translate-x-1 break-words">
                 {value}
             </span>
         </div>

@@ -13,7 +13,7 @@ import { FooterInfo } from "./footer-info";
  */
 export function AboutContent() {
     return (
-        <div className="space-y-16">
+        <div className="space-y-12 sm:space-y-16">
             <HeroSection />
             <MissionSection />
             <FeaturesSection />

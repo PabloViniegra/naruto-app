@@ -30,17 +30,18 @@ export function Navbar() {
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 sm:h-14 sm:px-6 lg:px-8">
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2 font-mono text-lg font-bold transition-colors hover:text-primary"
+                    className="flex items-center gap-2 font-mono text-base font-bold transition-colors hover:text-primary sm:text-lg"
                 >
-                    Naruto Universe
+                    <span className="hidden xs:inline">Naruto Universe</span>
+                    <span className="inline xs:hidden">Naruto</span>
                 </Link>
 
-                {/* Navigation Links */}
-                <div className="hidden items-center gap-1 sm:flex">
+                {/* Navigation Links - Desktop */}
+                <div className="hidden items-center gap-1 md:flex">
                     {navLinks.map(({ href, label, icon: Icon }) => {
                         const isActive = pathname.startsWith(href);
 
@@ -49,7 +50,7 @@ export function Navbar() {
                                 key={href}
                                 href={href}
                                 className={cn(
-                                    "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                                    "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors min-h-[44px]",
                                     isActive
                                         ? "bg-secondary text-foreground"
                                         : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
@@ -63,7 +64,7 @@ export function Navbar() {
                 </div>
 
                 {/* Mobile Navigation */}
-                <div className="flex items-center gap-1 sm:hidden">
+                <div className="flex items-center gap-0.5 md:hidden">
                     {navLinks.map(({ href, icon: Icon, label }) => {
                         const isActive = pathname.startsWith(href);
 
@@ -72,7 +73,7 @@ export function Navbar() {
                                 key={href}
                                 href={href}
                                 className={cn(
-                                    "flex items-center justify-center rounded-md p-3 min-w-[44px] min-h-[44px] transition-colors",
+                                    "flex items-center justify-center rounded-md p-2.5 min-w-[44px] min-h-[44px] transition-colors",
                                     isActive
                                         ? "bg-secondary text-foreground"
                                         : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
@@ -86,10 +87,12 @@ export function Navbar() {
                 </div>
 
                 {/* Theme Switcher */}
-                <ThemeSwitcher
-                    value={theme as "light" | "dark" | "system" | undefined}
-                    onChange={handleThemeChange}
-                />
+                <div className="flex-shrink-0">
+                    <ThemeSwitcher
+                        value={theme as "light" | "dark" | "system" | undefined}
+                        onChange={handleThemeChange}
+                    />
+                </div>
             </div>
         </nav>
     );
