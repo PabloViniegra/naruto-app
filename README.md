@@ -103,6 +103,93 @@ Before you begin, ensure you have the following installed:
 | `pnpm test` | Run unit tests |
 | `pnpm test:watch` | Run tests in watch mode |
 | `pnpm test:coverage` | Run tests with coverage report |
+| `pnpm test:e2e` | Run end-to-end tests with Playwright |
+| `pnpm test:e2e:ui` | Run e2e tests in interactive UI mode |
+| `pnpm test:e2e:headed` | Run e2e tests with visible browser |
+| `pnpm test:e2e:chromium` | Run e2e tests on Chromium only (faster) |
+
+## End-to-End Testing
+
+This project uses [Playwright](https://playwright.dev/) for comprehensive end-to-end testing across all major browsers.
+
+### Running E2E Tests
+
+#### Full Test Suite
+```bash
+pnpm test:e2e
+```
+Runs all 72 tests across Chromium, Firefox, and WebKit browsers.
+
+#### Interactive UI Mode
+```bash
+pnpm test:e2e:ui
+```
+Opens the Playwright UI for interactive test debugging and execution.
+
+#### Visible Browser
+```bash
+pnpm test:e2e:headed
+```
+Runs tests with visible browser windows (useful for debugging).
+
+#### Single Browser (Faster)
+```bash
+pnpm test:e2e:chromium
+```
+Runs tests on Chromium only for faster feedback during development.
+
+### Test Coverage
+
+The test suite covers all major user-facing features:
+
+- **Home Page**: Hero section, statistics, and navigation
+- **Characters Page**: Browsing, searching, pagination, and filtering
+- **Character Details**: Viewing detailed character information
+- **Clans Page**: Clan browsing and pagination
+- **About Page**: Page content and metadata
+- **Navigation**: Cross-page navigation and browser history
+
+### Test Files
+
+All e2e tests are located in the `e2e/` directory:
+
+```
+e2e/
+├── about.spec.ts              # About page tests
+├── character-detail.spec.ts   # Character detail page tests
+├── characters.spec.ts         # Characters list and search tests
+├── clans.spec.ts              # Clans page tests
+├── home.spec.ts               # Home page tests
+└── navigation.spec.ts         # Navigation flow tests
+```
+
+### Writing New E2E Tests
+
+To add new tests, create a file with the `.spec.ts` extension in the `e2e/` directory:
+
+```typescript
+import { test, expect } from '@playwright/test';
+
+test.describe('Feature Name', () => {
+  test('should do something', async ({ page }) => {
+    await page.goto('/feature-path');
+
+    const element = page.getByRole('button', { name: /Button Label/i });
+    await expect(element).toBeVisible();
+
+    await element.click();
+    await expect(page).toHaveURL(/\/expected-path/);
+  });
+});
+```
+
+### Playwright Best Practices
+
+- Use semantic locators (`getByRole`, `getByLabel`, `getByText`) instead of CSS selectors
+- Avoid hardcoded timeouts; use proper wait strategies
+- Use `waitForLoadState()` for network synchronization
+- Test user behavior, not implementation details
+- Keep tests focused and independent
 
 ## Project Structure
 
