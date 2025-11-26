@@ -20,9 +20,6 @@ test.describe('Character Detail Page', () => {
     // Navigate to a specific character (using ID 1 as an example)
     await page.goto('/characters/1');
 
-    // Wait for content to load
-    await page.waitForLoadState('networkidle');
-
     // The page should have character content
     // Check for common sections that might appear
     const mainContent = page.locator('main, [role="main"], article').first();
@@ -37,10 +34,6 @@ test.describe('Character Detail Page', () => {
     // Try to access a character with an invalid ID
     await page.goto('/characters/999999');
 
-    // Wait for page to load
-    await page.waitForLoadState('networkidle');
-
-    // Should either show an error message or redirect
     // The page should have loaded without crashing
     expect(page.url()).toBeTruthy();
   });

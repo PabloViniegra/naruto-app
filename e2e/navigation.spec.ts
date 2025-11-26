@@ -22,10 +22,6 @@ test.describe('Navigation', () => {
   test('should handle 404 pages gracefully', async ({ page }) => {
     await page.goto('/non-existent-page');
 
-    // Should show 404 content or redirect
-    // Wait for page to load
-    await page.waitForLoadState('networkidle');
-
     // The page should have loaded (either 404 or redirect)
     expect(page.url()).toBeTruthy();
   });

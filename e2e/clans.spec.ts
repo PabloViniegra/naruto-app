@@ -12,18 +12,12 @@ test.describe('Clans Page', () => {
     // Check description
     await expect(page.getByText(/Explore the legendary clans/i)).toBeVisible();
 
-    // Wait for content to load
-    await page.waitForLoadState('networkidle');
-
     // Page should be loaded successfully (check by verifying heading is still visible)
     const title = page.getByRole('heading', { name: /Naruto Clans/i });
     await expect(title).toBeVisible();
   });
 
   test('should display clans in a grid layout', async ({ page }) => {
-    // Wait for clans to load
-    await page.waitForLoadState('networkidle');
-
     // Look for clan cards or grid items
     // Clans are likely displayed in some kind of card or grid format
     const gridItems = page.locator('article, [class*="card"], [class*="bento"]');
@@ -35,8 +29,6 @@ test.describe('Clans Page', () => {
   });
 
   test('should have pagination if multiple pages exist', async ({ page }) => {
-    await page.waitForLoadState('networkidle');
-
     // Check for pagination
     const pagination = page.locator('nav[aria-label*="Pagination"], [class*="pagination"]');
 

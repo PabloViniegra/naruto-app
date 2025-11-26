@@ -66,9 +66,6 @@ test.describe('Characters Page', () => {
   });
 
   test('should display pagination when not searching', async ({ page }) => {
-    // Wait for page to fully load
-    await page.waitForLoadState('networkidle');
-
     // Pagination should be visible (if there are multiple pages)
     const pagination = page.locator('nav[aria-label="Pagination"]');
 
@@ -85,9 +82,6 @@ test.describe('Characters Page', () => {
   });
 
   test('should navigate through pagination when available', async ({ page }) => {
-    // Wait for initial load
-    await page.waitForLoadState('networkidle');
-
     // Check if pagination exists
     const pagination = page.locator('nav[aria-label="Pagination"]');
     const hasPages = (await pagination.count()) > 0;
